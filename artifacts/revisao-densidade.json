@@ -1,0 +1,118 @@
+[
+  {
+    "cards": [
+      {
+        "overflow": false
+      },
+      {
+        "overflow": false
+      },
+      {
+        "overflow": false
+      },
+      {
+        "overflow": false
+      }
+    ],
+    "documentWidth": 1568,
+    "panels": [
+      {
+        "height": 248,
+        "overflow": false
+      },
+      {
+        "height": 248,
+        "overflow": false
+      }
+    ],
+    "scoreVisible": false,
+    "width": 1568
+  },
+  {
+    "cards": [
+      {
+        "overflow": false
+      },
+      {
+        "overflow": false
+      },
+      {
+        "overflow": false
+      },
+      {
+        "overflow": false
+      }
+    ],
+    "documentWidth": 1366,
+    "panels": [
+      {
+        "height": 268,
+        "overflow": false
+      },
+      {
+        "height": 268,
+        "overflow": false
+      }
+    ],
+    "scoreVisible": false,
+    "width": 1366
+  },
+  {
+    "cards": [
+      {
+        "overflow": false
+      },
+      {
+        "overflow": false
+      },
+      {
+        "overflow": false
+      },
+      {
+        "overflow": false
+      }
+    ],
+    "documentWidth": 1024,
+    "panels": [
+      {
+        "height": 328,
+        "overflow": false
+      },
+      {
+        "height": 328,
+        "overflow": false
+      }
+    ],
+    "scoreVisible": false,
+    "width": 1024
+  },
+  {
+    "cards": [
+      {
+        "overflow": false
+      },
+      {
+        "overflow": false
+      },
+      {
+        "overflow": false
+      },
+      {
+        "overflow": false
+      }
+    ],
+    "documentWidth": 390,
+    "panels": [
+      {
+        "height": 378,
+        "overflow": false
+      },
+      {
+        "height": 254,
+        "overflow": false
+      }
+    ],
+    "scoreVisible": false,
+    "width": 390
+  }
+]

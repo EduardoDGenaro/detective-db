@@ -1,0 +1,10 @@
+suspect_id,suspect_name,age,occupation,alibi,risk_level
+S001,Helena Vasconcelos,46,Curadora de Antiguidades,Afirma ter permanecido no Salao Principal e na Biblioteca avaliando catalogos durante toda a noite,MEDIUM
+S002,Victor Alencar,52,Mestre Relojoeiro,Relata que esteve na Estufa Botanica conversando com convidados e ajustando ferramentas na Biblioteca,HIGH
+S003,Camila Drummond,34,Perita de Seguros,Alega ter ficado no Terraco Panoramico em chamada telefonica internacional entre 22h00 e 22h30,LOW
+S004,Eduardo Montenegro,61,Colecionador Particular,Diz que permaneceu no Salao Principal degustando vinhos com outros convidados,HIGH
+S005,Lucas Silveira,29,Tecnico de Seguranca Eletronica,Afirma que realizava ronda preventiva no Jardim das Esculturas e na Garagem Leste,MEDIUM
+S006,Beatriz Noronha,39,Jornalista Investigativa,Sustenta que estava na Biblioteca de Cartografia consultando arquivos historicos da familia,LOW
+S007,Rafael Tavares,41,Sommelier Chefe,Declara que organizava a adega e o servico no Salao Principal durante o evento,LOW
+S008,Marina Cortese,37,Arquiteta Restauradora,Informa que inspecionava a iluminacao da Estufa Botanica e do Jardim das Esculturas,MEDIUM
+

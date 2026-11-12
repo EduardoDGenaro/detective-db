@@ -1,0 +1,268 @@
+{
+  "responsive": [
+    {
+      "cards": [
+        {
+          "height": 168,
+          "label": "Suspeito selecionado",
+          "overflow": false,
+          "width": 300
+        },
+        {
+          "height": 168,
+          "label": "Triagem inicial",
+          "overflow": false,
+          "width": 300
+        },
+        {
+          "height": 168,
+          "label": "Situação do álibi",
+          "overflow": false,
+          "width": 300
+        },
+        {
+          "height": 168,
+          "label": "Pontuação heurística",
+          "overflow": false,
+          "width": 300
+        }
+      ],
+      "documentWidth": 1568,
+      "viewport": 1568
+    },
+    {
+      "cards": [
+        {
+          "height": 168,
+          "label": "Suspeito selecionado",
+          "overflow": false,
+          "width": 249
+        },
+        {
+          "height": 168,
+          "label": "Triagem inicial",
+          "overflow": false,
+          "width": 249
+        },
+        {
+          "height": 168,
+          "label": "Situação do álibi",
+          "overflow": false,
+          "width": 249
+        },
+        {
+          "height": 168,
+          "label": "Pontuação heurística",
+          "overflow": false,
+          "width": 249
+        }
+      ],
+      "documentWidth": 1366,
+      "viewport": 1366
+    },
+    {
+      "cards": [
+        {
+          "height": 168,
+          "label": "Suspeito selecionado",
+          "overflow": false,
+          "width": 343
+        },
+        {
+          "height": 168,
+          "label": "Triagem inicial",
+          "overflow": false,
+          "width": 343
+        },
+        {
+          "height": 168,
+          "label": "Situação do álibi",
+          "overflow": false,
+          "width": 343
+        },
+        {
+          "height": 168,
+          "label": "Pontuação heurística",
+          "overflow": false,
+          "width": 343
+        }
+      ],
+      "documentWidth": 1024,
+      "viewport": 1024
+    },
+    {
+      "cards": [
+        {
+          "height": 168,
+          "label": "Suspeito selecionado",
+          "overflow": false,
+          "width": 478
+        },
+        {
+          "height": 168,
+          "label": "Triagem inicial",
+          "overflow": false,
+          "width": 478
+        },
+        {
+          "height": 168,
+          "label": "Situação do álibi",
+          "overflow": false,
+          "width": 478
+        },
+        {
+          "height": 168,
+          "label": "Pontuação heurística",
+          "overflow": false,
+          "width": 478
+        }
+      ],
+      "documentWidth": 768,
+      "viewport": 768
+    },
+    {
+      "cards": [
+        {
+          "height": 128,
+          "label": "Suspeito selecionado",
+          "overflow": false,
+          "width": 348
+        },
+        {
+          "height": 128,
+          "label": "Triagem inicial",
+          "overflow": false,
+          "width": 348
+        },
+        {
+          "height": 128,
+          "label": "Situação do álibi",
+          "overflow": false,
+          "width": 348
+        },
+        {
+          "height": 128,
+          "label": "Pontuação heurística",
+          "overflow": false,
+          "width": 348
+        }
+      ],
+      "documentWidth": 390,
+      "viewport": 390
+    }
+  ],
+  "pages": [
+    {
+      "page": "Visão geral",
+      "cards": [
+        {
+          "height": 168,
+          "label": "Suspeitos",
+          "overflow": false,
+          "width": 249
+        },
+        {
+          "height": 168,
+          "label": "Evidências",
+          "overflow": false,
+          "width": 249
+        },
+        {
+          "height": 168,
+          "label": "Contradições abertas",
+          "overflow": false,
+          "width": 249
+        },
+        {
+          "height": 168,
+          "label": "Testes dbt aprovados",
+          "overflow": false,
+          "width": 249
+        }
+      ],
+      "documentWidth": 1366,
+      "viewport": 1366
+    },
+    {
+      "page": "Evidências",
+      "cards": [
+        {
+          "height": 168,
+          "label": "EVIDENCIAS FILTRADAS",
+          "overflow": false,
+          "width": 252
+        },
+        {
+          "height": 168,
+          "label": "ANALISADAS (ANALYZED)",
+          "overflow": false,
+          "width": 252
+        },
+        {
+          "height": 168,
+          "label": "EM CUSTODIA (COLLECTED)",
+          "overflow": false,
+          "width": 252
+        },
+        {
+          "height": 168,
+          "label": "DESCARTADAS / PISTAS FALSAS",
+          "overflow": false,
+          "width": 252
+        }
+      ],
+      "documentWidth": 1366,
+      "viewport": 1366
+    },
+    {
+      "page": "Qualidade dos Dados",
+      "cards": [
+        {
+          "height": 168,
+          "label": "TESTES AVALIADOS",
+          "overflow": false,
+          "width": 249
+        },
+        {
+          "height": 168,
+          "label": "Aprovados",
+          "overflow": false,
+          "width": 249
+        },
+        {
+          "height": 168,
+          "label": "Falhos",
+          "overflow": false,
+          "width": 249
+        },
+        {
+          "height": 168,
+          "label": "Avisos / ignorados",
+          "overflow": false,
+          "width": 249
+        }
+      ],
+      "documentWidth": 1366,
+      "viewport": 1366
+    },
+    {
+      "page": "Configurações",
+      "cards": [
+        {
+          "height": 168,
+          "label": "Estado do banco",
+          "overflow": false,
+          "width": 519
+        },
+        {
+          "height": 168,
+          "label": "Resultados dbt",
+          "overflow": false,
+          "width": 519
+        }
+      ],
+      "documentWidth": 1366,
+      "viewport": 1366
+    }
+  ]
+}

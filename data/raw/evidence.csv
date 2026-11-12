@@ -1,0 +1,22 @@
+evidence_id,suspect_id,location_id,evidence_type,evidence_description,collected_at,status
+E001,S001,L001,VESTIGIO_FISICO,Microfibras de seda azul presas na trava interna da vitrine do relogio,2026-10-14T22:40:00,ANALYZED
+E002,S001,L004,OBJETO_PESSOAL,Par de luvas de camurca com residuo de polimento metalico no corredor subterraneo,2026-10-14T22:52:00,ANALYZED
+E003,S001,L003,DOCUMENTO,Catalogo de leilao privado em Genebra com anotacoes sobre o Relogio Breguet 1794,2026-10-14T23:10:00,ANALYZED
+E004,S001,L007,DISPOSITIVO_ELETRONICO,Cartao RFID temporario com log de destravamento da porta norte as 22h13,2026-10-14T23:25:00,COLLECTED
+E005,S002,L001,FERRAMENTA,Chave de calibracao micrometrica deixada sobre a bancada da relojoaria,2026-10-14T22:45:00,DISCARDED
+E006,S002,L001,VESTIGIO_FISICO,Gotas de oleo sintetico relojoeiro aplicadas durante manutencao autorizada as 16h,2026-10-14T22:48:00,DISCARDED
+E007,S002,L004,IMPRESSAO_DIGITAL,Impressao parcial no corrimao de acesso ao subsolo proximo a adega,2026-10-14T23:05:00,ANALYZED
+E008,S003,L001,IMPRESSAO_DIGITAL,Impressao digital latente no painel lateral do mostrador de vidro temperado,2026-10-14T22:42:00,ANALYZED
+E009,S003,L007,OBJETO_PESSOAL,Estojo termico acolchoado com espuma moldada nas dimensoes exatas do relogio,2026-10-14T23:18:00,ANALYZED
+E010,S003,L008,DOCUMENTO,Apolice de seguro complementar emitida 48 horas antes do evento com clausula de extravio,2026-10-14T23:40:00,COLLECTED
+E011,S004,L002,DOCUMENTO,Proposta comercial recusada para aquisicao direta do Relogio Breguet 1794,2026-10-14T23:15:00,DISCARDED
+E012,S004,L006,OBJETO_PESSOAL,Taca de cristal com gravacao da safra servida no Salao Principal as 22h10,2026-10-14T23:30:00,DISCARDED
+E013,S005,L004,DISPOSITIVO_ELETRONICO,Modulo repetidor de sinal conectado ao quadro de vigilancia do subsolo,2026-10-14T22:58:00,ANALYZED
+E014,S005,L007,FERRAMENTA,Alicate de crimpagem e cabos de rede junto ao controle do portao leste,2026-10-14T23:22:00,COLLECTED
+E015,S006,L003,DOCUMENTO,Caderno de notas com transcricao de inventario antigo da familia Valmont,2026-10-14T23:35:00,COLLECTED
+E016,S006,L005,OBJETO_PESSOAL,Gravador de voz digital esquecido em banco lateral da Estufa Botanica,2026-10-14T23:50:00,ANALYZED
+E017,S007,L002,DOCUMENTO,Planilha assinada de controle de abertura de garrafas entre 21h30 e 22h30,2026-10-15T00:05:00,ANALYZED
+E018,S008,L005,DOCUMENTO,Planta arquitetonica original indicando duto de ventilacao entre Cofre e Subsolo,2026-10-15T00:15:00,COLLECTED
+E019,,L001,VESTIGIO_FISICO,Fragmento de lacre de cera rompido junto ao pedestal do Relogio Breguet,2026-10-14T22:36:00,ANALYZED
+E020,,L004,VESTIGIO_FISICO,Marcas de solado umido no piso de pedra do corredor subterraneo rumo a garagem,2026-10-14T22:55:00,COLLECTED
+

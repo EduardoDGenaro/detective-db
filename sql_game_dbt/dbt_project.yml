@@ -1,0 +1,9 @@
+name: sql_game
+version: '1.0.0'
+config-version: 2
+profile: sql_game
+model-paths: [models]
+seed-paths: [seeds]
+models:
+  sql_game:
+    +materialized: table

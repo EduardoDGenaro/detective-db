@@ -1,0 +1,364 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Camada bruta (raw) ingerida no DuckDB a partir dos cinco arquivos CSV do Caso 001 (O Relogio Parado)."
+    schema: raw
+    tables:
+      - name: suspects
+        description: "Cadastro preliminar dos suspeitos presentes na Mansao Valmont."
+        columns:
+          - name: suspect_id
+            description: "Identificador estavel e unico do suspeito."
+            tests:
+              - unique
+              - not_null
+          - name: suspect_name
+            description: "Nome completo do suspeito."
+            tests:
+              - not_null
+          - name: age
+            description: "Idade declarada do suspeito."
+            tests:
+              - not_null
+          - name: occupation
+            description: "Ocupacao ou atuacao profissional."
+            tests:
+              - not_null
+          - name: alibi
+            description: "Resumo textual do alibi apresentado inicialmente."
+            tests:
+              - not_null
+          - name: risk_level
+            description: "Classificacao inicial de triagem (LOW, MEDIUM ou HIGH). Nao representa veredito."
+            tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ['LOW', 'MEDIUM', 'HIGH']
+
+      - name: locations
+        description: "Catalogo de ambientes internos e externos monitorados na Mansao Valmont."
+        columns:
+          - name: location_id
+            description: "Identificador unico do local."
+            tests:
+              - unique
+              - not_null
+          - name: location_name
+            description: "Nome descritivo do ambiente."
+            tests:
+              - not_null
+          - name: area_type
+            description: "Tipo fisico da area (INDOOR ou OUTDOOR)."
+            tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ['INDOOR', 'OUTDOOR']
+          - name: city_zone
+            description: "Setor ou ala dentro do perimetro da mansao."
+            tests:
+              - not_null
+
+      - name: evidence
+        description: "Registro bruto das evidencias coletadas pela pericia tecnica."
+        columns:
+          - name: evidence_id
+            description: "Chave primaria da evidencia. Testada na fonte para detectar duplicidades na ingestao."
+            tests:
+              - unique
+              - not_null
+          - name: suspect_id
+            description: "Suspeito associado ao vestigio (pode ser nulo quando o autor nao foi identificado)."
+          - name: location_id
+            description: "Local onde a evidencia foi coletada."
+            tests:
+              - not_null
+          - name: evidence_type
+            description: "Categoria pericial do item coletado."
+            tests:
+              - not_null
+          - name: evidence_description
+            description: "Descricao objetiva da evidencia."
+            tests:
+              - not_null
+          - name: collected_at
+            description: "Timestamp ISO 8601 do momento de coleta pericial."
+            tests:
+              - not_null
+          - name: status
+            description: "Estado de processamento da evidencia (COLLECTED, ANALYZED ou DISCARDED)."
+            tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ['COLLECTED', 'ANALYZED', 'DISCARDED']
+
+      - name: testimonies
+        description: "Depoimentos formais colhidos na noite da investigacao com alibis estruturados."
+        columns:
+          - name: testimony_id
+            description: "Identificador unico do depoimento."
+            tests:
+              - unique
+              - not_null
+          - name: suspect_id
+            description: "Suspeito autor do depoimento."
+            tests:
+              - not_null
+          - name: statement
+            description: "Conteudo textual declarado no depoimento."
+            tests:
+              - not_null
+          - name: statement_time
+            description: "Momento em que o depoimento foi lavrado."
+            tests:
+              - not_null
+          - name: claimed_location_id
+            description: "Local em que o suspeito declara ter estado."
+            tests:
+              - not_null
+          - name: claimed_event_time
+            description: "Horario de referencia do alibi declarado."
+            tests:
+              - not_null
+          - name: consistency_flag
+            description: "Indicador preliminar de consistencia interna do relato."
+            tests:
+              - not_null
+
+      - name: cameras
+        description: "Logs brutos de deteccao das cameras de vigilancia da Mansao Valmont."
+        columns:
+          - name: camera_event_id
+            description: "Identificador unico do evento de camera."
+            tests:
+              - unique
+              - not_null
+          - name: suspect_id
+            description: "Suspeito identificado no registro visual."
+            tests:
+              - not_null
+          - name: location_id
+            description: "Local onde a camera esta instalada."
+            tests:
+              - not_null
+          - name: seen_at
+            description: "Horario exato da captura na camera."
+            tests:
+              - not_null
+          - name: camera_label
+            description: "Codigo do equipamento de camera."
+            tests:
+              - not_null
+
+models:
+  - name: stg_suspects
+    description: "Suspeitos padronizados a partir de raw.suspects."
+    columns:
+      - name: suspect_id
+        tests:
+          - unique
+          - not_null
+      - name: suspect_name
+        tests:
+          - not_null
+      - name: risk_level
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['LOW', 'MEDIUM', 'HIGH']
+
+  - name: stg_locations
+    description: "Locais padronizados a partir de raw.locations."
+    columns:
+      - name: location_id
+        tests:
+          - unique
+          - not_null
+      - name: location_name
+        tests:
+          - not_null
+      - name: area_type
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['INDOOR', 'OUTDOOR']
+
+  - name: stg_evidence
+    description: "Evidencias padronizadas com marcacao explicita de suspeitos nao identificados."
+    columns:
+      - name: evidence_id
+        tests:
+          - unique
+          - not_null
+      - name: suspect_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_suspects')
+                field: suspect_id
+      - name: location_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_locations')
+                field: location_id
+      - name: status
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['COLLECTED', 'ANALYZED', 'DISCARDED']
+
+  - name: stg_testimonies
+    description: "Depoimentos padronizados com chaves para validacao de alibi."
+    columns:
+      - name: testimony_id
+        tests:
+          - unique
+          - not_null
+      - name: suspect_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_suspects')
+                field: suspect_id
+      - name: claimed_location_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_locations')
+                field: location_id
+
+  - name: stg_cameras
+    description: "Eventos de cameras padronizados."
+    columns:
+      - name: camera_event_id
+        tests:
+          - unique
+          - not_null
+      - name: suspect_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_suspects')
+                field: suspect_id
+      - name: location_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_locations')
+                field: location_id
+
+  - name: dim_suspects
+    description: "Dimensao analitica de suspeitos."
+    columns:
+      - name: suspect_id
+        tests:
+          - unique
+          - not_null
+      - name: suspect_name
+        tests:
+          - not_null
+
+  - name: dim_locations
+    description: "Dimensao analitica de locais com classificacao de restricao."
+    columns:
+      - name: location_id
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_evidence
+    description: "Tabela fato de evidencias periciais."
+    columns:
+      - name: evidence_id
+        tests:
+          - unique
+          - not_null
+      - name: location_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_locations')
+                field: location_id
+
+  - name: fct_testimonies
+    description: "Tabela fato de depoimentos enriquecida com verificacao de alibi contra cameras."
+    columns:
+      - name: testimony_id
+        tests:
+          - unique
+          - not_null
+      - name: suspect_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_suspects')
+                field: suspect_id
+
+  - name: fct_camera_events
+    description: "Tabela fato de eventos de cameras com rastreamento sequencial por suspeito."
+    columns:
+      - name: camera_event_id
+        tests:
+          - unique
+          - not_null
+      - name: suspect_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_suspects')
+                field: suspect_id
+      - name: location_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_locations')
+                field: location_id
+
+  - name: mart_case_summary
+    description: "Resumo consolidado por suspeito com metricas de evidencias, conflitos de alibi e score heuristico."
+    columns:
+      - name: suspect_id
+        tests:
+          - unique
+          - not_null
+      - name: suspect_name
+        tests:
+          - not_null
+      - name: evidence_count
+        tests:
+          - not_null
+      - name: testimony_count
+        tests:
+          - not_null
+      - name: camera_events_count
+        tests:
+          - not_null
+      - name: inconsistent_testimony_count
+        tests:
+          - not_null
+      - name: alibi_camera_conflict_count
+        tests:
+          - not_null
+      - name: contradiction_flag
+        tests:
+          - not_null
+      - name: suspicion_score
+        tests:
+          - not_null
+

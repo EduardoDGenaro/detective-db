@@ -1,0 +1,28 @@
+# Ambientes virtuais e cache Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Banco de dados DuckDB gerado pelo pipeline
+data/*.duckdb
+data/*.duckdb.wal
+*.duckdb
+*.duckdb.wal
+
+# Artefatos gerados pelo dbt Core
+detective_dbt/target/
+detective_dbt/logs/
+detective_dbt/dbt_packages/
+logs/
+target/
+data/games/
+
+# Arquivos temporarios de sistema e IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+

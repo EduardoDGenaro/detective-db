@@ -1,0 +1,10 @@
+location_id,location_name,area_type,city_zone
+L001,Sala do Cofre e Relojoaria,INDOOR,Ala Norte - Mansao Valmont
+L002,Salao Principal de Inverno,INDOOR,Ala Central - Mansao Valmont
+L003,Biblioteca de Cartografia,INDOOR,Ala Leste - Mansao Valmont
+L004,Corredor de Servico Subterraneo,INDOOR,Subsolo - Mansao Valmont
+L005,Estufa Botanica,INDOOR,Ala Sul - Mansao Valmont
+L006,Jardim das Esculturas,OUTDOOR,Perimetro Externo - Mansao Valmont
+L007,Garagem e Portao Leste,OUTDOOR,Acesso Veicular - Mansao Valmont
+L008,Terraco Panoramico,OUTDOOR,Cobertura - Mansao Valmont
+

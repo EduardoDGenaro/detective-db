@@ -1,0 +1,16 @@
+testimony_id,suspect_id,statement,statement_time,claimed_location_id,claimed_event_time,consistency_flag
+T001,S001,Permaneceu no Salao Principal conversando sobre arte sacra no momento em que o relogio parou,2026-10-14T23:05:00,L002,2026-10-14T22:15:00,false
+T002,S001,Foi direto para a Biblioteca de Cartografia revisar o catalogo sem passar pelo subsolo,2026-10-14T23:12:00,L003,2026-10-14T22:25:00,false
+T003,S002,Estava na Estufa Botanica apreciando as orquideas raras por volta das 22h00,2026-10-14T23:18:00,L005,2026-10-14T22:00:00,true
+T004,S002,Permaneceu na Biblioteca de Cartografia organizando suas notas tecnicas as 22h20,2026-10-14T23:24:00,L003,2026-10-14T22:20:00,false
+T005,S003,Estava no Terraco Panoramico atendendo ligacao de corretora em Zurique as 22h10,2026-10-14T23:30:00,L008,2026-10-14T22:10:00,false
+T006,S003,Continuou no Terraco Panoramico ate as 22h30 sem descer ao piso terreo ou garagem,2026-10-14T23:36:00,L008,2026-10-14T22:28:00,false
+T007,S004,Estava no Salao Principal degustando um Bordeaux na companhia do sommelier as 22h15,2026-10-14T23:42:00,L002,2026-10-14T22:15:00,true
+T008,S004,Caminhou brevemente pelo Jardim das Esculturas antes do anuncio do desaparecimento as 22h35,2026-10-14T23:48:00,L006,2026-10-14T22:35:00,true
+T009,S005,Realizava inspecao externa no Jardim das Esculturas quando houve oscilacao eletrica as 22h05,2026-10-14T23:55:00,L006,2026-10-14T22:05:00,false
+T010,S005,Verificou a tranca automatica da Garagem e Portao Leste as 22h32,2026-10-15T00:02:00,L007,2026-10-14T22:32:00,true
+T011,S006,Consultava mapas antigos na Biblioteca de Cartografia as 21h50 sem sair da sala,2026-10-15T00:10:00,L003,2026-10-14T21:50:00,false
+T012,S006,Retornou ao Salao Principal de Inverno as 22h18 para ouvir o discurso do anfitriao,2026-10-15T00:16:00,L002,2026-10-14T22:18:00,true
+T013,S007,Serviu vinhos ininterruptamente no Salao Principal de Inverno entre 21h45 e 22h30,2026-10-15T00:25:00,L002,2026-10-14T22:15:00,true
+T014,S008,Avaliava os refletores da Estufa Botanica as 22h12 em preparacao para o relatorio de restauro,2026-10-15T00:35:00,L005,2026-10-14T22:12:00,true
+

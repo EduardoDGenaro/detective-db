@@ -1,0 +1,29 @@
+version: 2
+models:
+  - name: laudo_vitima
+    columns:
+      - name: vitima_id
+        data_tests: [unique, not_null]
+      - name: local_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: "ref('locais')", field: local_id}
+  - name: testemunhas
+    columns:
+      - name: pessoa_id
+        data_tests: [unique, not_null]
+      - name: local_declarado_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: "ref('locais')", field: local_id}
+      - name: local_registrado_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: "ref('locais')", field: local_id}
+  - name: locais
+    columns:
+      - name: local_id
+        data_tests: [unique, not_null]

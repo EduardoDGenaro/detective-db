@@ -1,0 +1,9 @@
+detective_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: '../data/detectivedb.duckdb'
+      schema: main
+      threads: 1
+

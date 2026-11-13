@@ -7,7 +7,7 @@ APP_DIR = Path(__file__).resolve().parent
 if str(APP_DIR) not in sys.path:
     sys.path.insert(0, str(APP_DIR))
 from components.case_game import accuse, load_game, start_game, next_investigation, save_game, LOCK
-from components.sql_case import prepare_case, query_case
+from components.sql_case import CASE_VERSION, prepare_case, query_case
 from components.sql_workspace import render_workspace, render_notes
 from components.cards import render_header
 from styles.theme import get_custom_css
@@ -95,7 +95,10 @@ def main():
                 st.query_params["partida"] = game_id
         game_id = st.session_state["game_id"]
         state = load_game(game_id)
-        if state["active"].get("sql_game", {}).get("version") != 3:
+        if not state["active"].get("sql_game") or (
+            state["active"]["status"] == "active"
+            and state["active"]["sql_game"].get("version") != CASE_VERSION
+        ):
             with st.spinner("Preparando as três tabelas desta investigação…"):
                 with LOCK:
                     state = load_game(game_id)

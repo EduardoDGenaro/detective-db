@@ -1,6 +1,6 @@
 # DetectiveDB — investigação por SQL
 
-O jogador descobre o assassino escrevendo SQL sobre três tabelas públicas: laudo_vitima, testemunhas e locais. Não há ranking, score, lista de contradições pronta ou evidência que nomeie automaticamente o culpado.
+Cada investigação tem 32 pessoas, todas elegíveis como culpado em novos casos. O jogador descobre o assassino escrevendo SQL sobre três tabelas públicas: laudo_vitima, testemunhas e locais. Não há ranking, score, lista de contradições pronta ou evidência que nomeie automaticamente o culpado.
 
 Fluxo: consultar o laudo, explorar o esquema, filtrar pessoas, cruzar horários e locais, registrar hipóteses no caderno e fazer uma acusação. A regra didática exige combinar presença na janela da morte, declaração incompatível e os dois vestígios. Há inocentes que mentem e inocentes que combinam com vestígios; um indício isolado não encerra o caso.
 

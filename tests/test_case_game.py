@@ -24,7 +24,7 @@ class CaseGameIntegration(unittest.TestCase):
             self.assertGreater(quality["counts"]["total"], 0)
             forensic = before["evidence"].query("evidence_type == 'LAUDO_FORENSE'")
             self.assertEqual(forensic.suspect_id.tolist(), [first["killer_id"]])
-            self.assertEqual(len(before["summary"]), 8)
+            self.assertEqual(len(before["summary"]), 32)
             clue_id = str(before["evidence"].iloc[0]["evidence_id"])
             game.save_notes(game_id, first["id"], "Conferir o horário do depoimento e a perícia.")
             marked = game.pin_clue(game_id, first["id"], "evidence", clue_id, True)

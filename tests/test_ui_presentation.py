@@ -32,7 +32,7 @@ class PresentationTests(unittest.TestCase):
             app.text_area[0].set_value("SELECT nome FROM testemunhas ORDER BY nome;")
             next(b for b in app.button if b.label == "Executar consulta").click().run()
             self.assertFalse(app.exception)
-            self.assertTrue(any(len(f.value) == 8 for f in app.dataframe))
+            self.assertTrue(any(len(f.value) == 32 for f in app.dataframe))
             next(b for b in app.button if b.label == "Guardar consulta no caderno").click().run()
             next(b for b in app.button if b.label == "Caderno de investigação").click().run()
             self.assertIn("SELECT nome", app.text_area[0].value)

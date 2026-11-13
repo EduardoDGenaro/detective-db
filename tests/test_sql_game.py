@@ -23,7 +23,7 @@ class SqlGameTests(unittest.TestCase):
         self.assertEqual(query_case(case, SOLUTION_SQL).pessoa_id.tolist(), [case["killer_id"]])
         self.assertGreater(len(query_case(case, "SELECT * FROM testemunhas WHERE local_declarado_id <> local_registrado_id")), 1)
         self.assertGreater(len(query_case(case, "SELECT t.* FROM testemunhas t JOIN laudo_vitima v ON t.numero_calcado = v.numero_calcado_vestigio AND t.tecido_roupa = v.fibra_vestigio")), 1)
-        self.assertEqual(len(query_case(case, "WITH pessoas AS (SELECT * FROM testemunhas) SELECT * FROM pessoas;")), 8)
+        self.assertEqual(len(query_case(case, "WITH pessoas AS (SELECT * FROM testemunhas) SELECT * FROM pessoas;")), 32)
 
     def test_sql_is_read_only_and_cannot_reach_private_data(self):
         for sql in ["DELETE FROM testemunhas", "SELECT 1; SELECT 2", "COPY testemunhas TO 'leak.csv'",
@@ -32,13 +32,13 @@ class SqlGameTests(unittest.TestCase):
                     "ATTACH 'data/detective.duckdb' AS private", "INSTALL httpfs", "SET enable_external_access=true"]:
             with self.subTest(sql=sql), self.assertRaises((ValueError, duckdb.Error)):
                 query_case(self.case, sql)
-        self.assertEqual(len(query_case(self.case, "SELECT * FROM testemunhas")), 8)
+        self.assertEqual(len(query_case(self.case, "SELECT * FROM testemunhas")), 32)
         self.assertEqual(len(query_case(self.case, "SELECT * FROM range(1000)")), 501)
         self.assertTrue(query_case(self.case, "SELECT * FROM testemunhas WHERE 1=0").empty)
 
     def test_seed_files_remain_valid_csv_after_dbt_build(self):
         seeds = Path(self.case["folder"]) / "sql" / "seeds"
-        for name, rows in [("laudo_vitima", 1), ("testemunhas", 8), ("locais", 4)]:
+        for name, rows in [("laudo_vitima", 1), ("testemunhas", 32), ("locais", 4)]:
             self.assertEqual(len(pd.read_csv(seeds / f"raw_{name}.csv")), rows)
 
     def test_expensive_query_is_interrupted(self):

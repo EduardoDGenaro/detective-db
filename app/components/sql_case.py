@@ -15,6 +15,7 @@ import duckdb
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[2]
+CASE_VERSION = 5
 TABLES = ("laudo_vitima", "testemunhas", "locais")
 LOCK = threading.RLock()
 
@@ -26,11 +27,15 @@ def prepare_case(case: dict) -> dict:
     with LOCK:
         if marker.exists():
             cached = json.loads(marker.read_text(encoding="utf-8"))
-            if cached.get("version") == 3:
+            if cached.get("version") == CASE_VERSION or case.get("status") in {"solved", "failed"}:
                 return cached
         folder.mkdir(exist_ok=True)
         rng = random.Random(case["id"])
         people = pd.read_csv(Path(case["folder"]) / "raw" / "suspects.csv")
+        # Expand active cases without changing their culprit or existing people.
+        roster = pd.read_csv(ROOT / "data" / "raw" / "suspects.csv")
+        additions = roster[~roster.suspect_id.isin(people.suspect_id)]
+        people = pd.concat([people, additions], ignore_index=True)
         ids = people.suspect_id.tolist()
         others = [i for i in ids if i != case["killer_id"]]
         rng.shuffle(others)
@@ -39,7 +44,7 @@ def prepare_case(case: dict) -> dict:
         patterns = [(True, True, False), (True, False, True), (False, True, True),
                     (True, False, False), (False, True, False), (False, False, True),
                     (False, False, False)]
-        roles.update(dict(zip(others, patterns)))
+        roles.update({person: patterns[index % len(patterns)] for index, person in enumerate(others)})
         moment = datetime.fromisoformat(case["crime_time"]) + timedelta(minutes=rng.randint(-100, 100))
         start, end = moment - timedelta(minutes=10), moment + timedelta(minutes=10)
         shoe = rng.choice([37, 38, 39, 40, 41, 42, 43])
@@ -113,12 +118,13 @@ def prepare_case(case: dict) -> dict:
             raise RuntimeError("O caso não tem uma solução única; a publicação foi interrompida.")
         culprit = next(w for w in witnesses if w["pessoa_id"] == case["killer_id"])
         location_name = sites.loc[sites.local_id == crime_location, "nome"].iloc[0]
-        metadata = {"version": 3, "location": location_name, "crime_time": moment.isoformat(), "proof": [
+        metadata = {"version": CASE_VERSION, "people_count": len(people), "location": location_name, "crime_time": moment.isoformat(), "proof": [
             f"O laudo situa a morte em {location_name}, entre {start:%H:%M} e {end:%H:%M}.",
             f"O acesso de {case['killer_name']} cobre essa janela: {culprit['entrada_registrada']:%H:%M}–{culprit['saida_registrada']:%H:%M}.",
             f"O depoimento declara o Salão Principal, mas o registro periciado o situa em {location_name}.",
             f"Calçado {shoe} e roupa de {fiber} correspondem aos dois vestígios do laudo. Só essa pessoa reúne os vestígios, a presença e o álibi incompatível.",
         ], "solution_sql": SOLUTION_SQL}
+        people.to_csv(Path(case["folder"]) / "raw" / "suspects.csv", index=False)
         marker.write_text(json.dumps(metadata, ensure_ascii=False), encoding="utf-8")
         return metadata
 
